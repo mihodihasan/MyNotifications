@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 import com.mihodihasan.mynotifications.domain.Utils
 import java.util.*
 
-@Entity
+@Entity(tableName = "notification")
 data class Notification(
     val title: String?,
     val message: String?,

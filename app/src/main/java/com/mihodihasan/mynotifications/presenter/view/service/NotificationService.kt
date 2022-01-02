@@ -8,6 +8,9 @@ import android.util.Log
 import com.mihodihasan.mynotifications.data.db.NotificationDao
 import com.mihodihasan.mynotifications.data.model.Notification
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -31,14 +34,17 @@ class NotificationService : NotificationListenerService() {
         Log.i("NotificationAccessData", title.toString())
         Log.i("NotificationAccessData", text)
         Log.i("NotificationAccessData", "Notification was removed $sbn")
-        dao.addNotification(
-            Notification(
-                title,
-                text,
-                System.currentTimeMillis(),
-                getAppNameFromPackageName(pack ?: "Unknown")
+        GlobalScope.launch(Dispatchers.IO) {
+            dao.addNotification(
+                Notification(
+                    title,
+                    text,
+                    System.currentTimeMillis(),
+                    getAppNameFromPackageName(pack ?: "Unknown")
+                )
             )
-        )
+        }
+
 
     }
 

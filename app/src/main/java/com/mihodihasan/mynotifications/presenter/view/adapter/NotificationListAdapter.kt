@@ -22,7 +22,7 @@ class NotificationListAdapter(val context : Context, private val list: MutableLi
         binding.appNameTv.text = list[position].appPackage.toString()
         binding.titleTv.text = list[position].title.toString()
         binding.bodyTv.text = list[position].message.toString()
-//        holder.binding.timestampTv.text = list[position].getFormattedTime()
+        binding.timestampTv.text = list[position].getFormattedTime()
     }
 
     override fun getItemCount(): Int = list.size
