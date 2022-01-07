@@ -1,5 +1,6 @@
 package com.mihodihasan.mynotifications.presenter.view.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -47,6 +48,9 @@ class TitleListActivity : AppCompatActivity(), OnListItemClickListener {
     }
 
     override fun onListItemClick(position: Int) {
-
+        startActivity(Intent(this, MessageListActivity::class.java).apply {
+            putExtra(Constants.SELECTED_PACKAGE_NAME, selectedPackageName)
+            putExtra(Constants.SELECTED_TITLE, list[position].title)
+        })
     }
 }

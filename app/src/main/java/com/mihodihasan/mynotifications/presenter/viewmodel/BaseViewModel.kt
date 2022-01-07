@@ -19,5 +19,6 @@ class BaseViewModel @Inject constructor(
 
     fun getStoredTitlesData(packageName:String): LiveData<List<Notification>> = dao.getAllTitlesLiveData(packageName)
 
+    fun getStoredMessagesData(packageName:String, title:String): LiveData<List<Notification>> = dao.getAllMessagesLiveData(packageName, title)
 
 }

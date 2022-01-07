@@ -25,10 +25,10 @@ class NotificationService : NotificationListenerService() {
         val pack = sbn?.packageName
 
         var text = ""
-        var title: String? = null
+        var title: String = ""
         val extras = sbn?.notification?.extras
         text = extras?.getCharSequence("android.text").toString()
-        title = extras?.getString("android.title")
+        title = extras?.getString("android.title").toString()
 
         Log.i("NotificationAccessData", getAppNameFromPackageName(pack ?: "Unknown"))
         Log.i("NotificationAccessData", title.toString())

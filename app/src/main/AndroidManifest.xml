@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyNotifications">
         <activity
+            android:name=".presenter.view.activity.MessageListActivity"
+            android:exported="false" />
+        <activity
             android:name=".presenter.view.activity.TitleListActivity"
             android:exported="false" />
         <activity
