@@ -7,14 +7,17 @@ import com.mihodihasan.mynotifications.data.model.Notification
 import com.mihodihasan.mynotifications.domain.SharedPreferenceManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
+import javax.inject.Singleton
 
 @HiltViewModel
-class MainActivityVM @Inject constructor(
+class BaseViewModel @Inject constructor(
     private val preferenceManager: SharedPreferenceManager,
     private val dao: NotificationDao
 ) : ViewModel() {
 
-    fun getStoredData(): LiveData<List<Notification>> = dao.getAllNotificationsLiveData()
+    fun getStoredPackagesData(): LiveData<List<Notification>> = dao.getAllPackagesLiveData()
+
+    fun getStoredTitlesData(packageName:String): LiveData<List<Notification>> = dao.getAllTitlesLiveData(packageName)
 
 
 }

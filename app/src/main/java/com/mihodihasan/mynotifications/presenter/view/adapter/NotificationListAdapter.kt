@@ -8,21 +8,29 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mihodihasan.mynotifications.R
 import com.mihodihasan.mynotifications.data.model.Notification
 import com.mihodihasan.mynotifications.databinding.RowNotificationsBinding
+import com.mihodihasan.mynotifications.presenter.view.OnListItemClickListener
 
-class NotificationListAdapter(val context : Context, private val list: MutableList<Notification>) : RecyclerView.Adapter<NotificationListAdapter.NotificationVH>() {
+class NotificationListAdapter(
+    val context: Context,
+    private val list: MutableList<Notification>,
+    private val onPackageListItemClickListener: OnListItemClickListener
+) :
+    RecyclerView.Adapter<NotificationListAdapter.NotificationVH>() {
 
-    class NotificationVH(val view:View):RecyclerView.ViewHolder(view)
+    class NotificationVH(val view: View) : RecyclerView.ViewHolder(view)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotificationVH {
-        return NotificationVH(LayoutInflater.from(context).inflate(R.layout.row_notifications, parent, false))
+        return NotificationVH(
+            LayoutInflater.from(context).inflate(R.layout.row_notifications, parent, false)
+        )
     }
 
     override fun onBindViewHolder(holder: NotificationVH, position: Int) {
         val binding = RowNotificationsBinding.bind(holder.view)
-        binding.appNameTv.text = list[position].appPackage.toString()
-        binding.titleTv.text = list[position].title.toString()
-        binding.bodyTv.text = list[position].message.toString()
-        binding.timestampTv.text = list[position].getFormattedTime()
+        binding.appNameTv.text = list[position].appPackage
+        holder.itemView.setOnClickListener {
+            onPackageListItemClickListener.onListItemClick(position)
+        }
     }
 
     override fun getItemCount(): Int = list.size
