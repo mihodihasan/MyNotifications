@@ -21,19 +21,12 @@ class NotificationService : NotificationListenerService() {
 
     override fun onNotificationPosted(sbn: StatusBarNotification?) {
         super.onNotificationPosted(sbn)
-
         val pack = sbn?.packageName
-
-        var text = ""
-        var title: String = ""
+        val text: String
+        val title: String
         val extras = sbn?.notification?.extras
         text = extras?.getCharSequence("android.text").toString()
         title = extras?.getString("android.title").toString()
-
-        Log.i("NotificationAccessData", getAppNameFromPackageName(pack ?: "Unknown"))
-        Log.i("NotificationAccessData", title.toString())
-        Log.i("NotificationAccessData", text)
-        Log.i("NotificationAccessData", "Notification was removed $sbn")
         GlobalScope.launch(Dispatchers.IO) {
             dao.addNotification(
                 Notification(
@@ -50,7 +43,6 @@ class NotificationService : NotificationListenerService() {
 
     override fun onNotificationRemoved(sbn: StatusBarNotification?) {
         super.onNotificationRemoved(sbn)
-        Log.i("NotificationAccessData", "Notification was removed ${sbn.toString()}")
     }
 
     private fun getAppNameFromPackageName(packageName: String): String {

@@ -3,8 +3,12 @@ package com.mihodihasan.mynotifications.di
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.room.Room
+import com.mihodihasan.mynotifications.data.RepoImpl
+import com.mihodihasan.mynotifications.data.db.NotificationDao
 import com.mihodihasan.mynotifications.data.db.PermanentDatabase
 import com.mihodihasan.mynotifications.domain.Constants
+import com.mihodihasan.mynotifications.domain.SharedPreferenceManager
+import com.mihodihasan.mynotifications.domain.repository.Repository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,6 +20,9 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 class DataModule {
 
+    @Provides
+    @Singleton
+    fun bindRepo(sharedPreferenceManager: SharedPreferenceManager, dao: NotificationDao):Repository = RepoImpl(sharedPreferenceManager, dao)
 
     @Singleton
     @Provides
