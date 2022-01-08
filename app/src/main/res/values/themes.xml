@@ -13,4 +13,37 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="Regular15" parent="android:Widget.TextView">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="fontFamily">@font/custom_regular</item>
+    </style>
+
+    <style name="Regular40" parent="Regular15">
+        <item name="android:textSize">40sp</item>
+    </style>
+
+    <style name="Regular13" parent="Regular15">
+        <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="Medium21" parent="android:Widget.TextView">
+        <item name="android:textSize">21sp</item>
+        <item name="fontFamily">@font/custom_bold_font</item>
+        <item name="android:textColor">@color/text_color</item>
+    </style>
+
+
+    <style name="Medium15" parent="Medium21">
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="Medium19" parent="Medium21">
+        <item name="android:textSize">19sp</item>
+    </style>
+
+    <style name="Toolbar.TitleText" parent="Medium19">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
 </resources>

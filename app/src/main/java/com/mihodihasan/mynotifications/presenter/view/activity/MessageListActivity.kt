@@ -3,7 +3,6 @@ package com.mihodihasan.mynotifications.presenter.view.activity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mihodihasan.mynotifications.data.model.Notification
@@ -11,21 +10,24 @@ import com.mihodihasan.mynotifications.databinding.ActivityMessageListBinding
 import com.mihodihasan.mynotifications.domain.Constants
 import com.mihodihasan.mynotifications.domain.EndlessRecyclerViewScrollListener
 import com.mihodihasan.mynotifications.presenter.view.adapter.MessageListAdapter
-import com.mihodihasan.mynotifications.presenter.viewmodel.AppPackagesVM
 import com.mihodihasan.mynotifications.presenter.viewmodel.MessageVm
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
 @AndroidEntryPoint
-class MessageListActivity : AppCompatActivity()  {
+class MessageListActivity : BaseActivity() {
     var loadMoreItems = true
     var endOfList = false
     private val scrollListener by lazy {
         object : EndlessRecyclerViewScrollListener(layoutManager) {
             override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
                 if (loadMoreItems) {
-                    viewModel.getStoredMessagesData(selectedPackageName?:return, selectedTitle?:return, page)
-                } else{
+                    viewModel.getStoredMessagesData(
+                        selectedPackageName ?: return,
+                        selectedTitle ?: return,
+                        page
+                    )
+                } else {
                     if (!endOfList) {
                         Toast.makeText(this@MessageListActivity, "End of list", Toast.LENGTH_SHORT)
                             .show()

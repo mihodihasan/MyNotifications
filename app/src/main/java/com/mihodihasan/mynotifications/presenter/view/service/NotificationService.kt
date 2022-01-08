@@ -1,10 +1,7 @@
 package com.mihodihasan.mynotifications.presenter.view.service
 
-import android.content.pm.ApplicationInfo
-import android.content.pm.PackageManager
 import android.service.notification.NotificationListenerService
 import android.service.notification.StatusBarNotification
-import android.util.Log
 import com.mihodihasan.mynotifications.data.db.NotificationDao
 import com.mihodihasan.mynotifications.data.model.Notification
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,7 +30,7 @@ class NotificationService : NotificationListenerService() {
                     title,
                     text,
                     System.currentTimeMillis(),
-                    getAppNameFromPackageName(pack ?: "Unknown")
+                    pack ?: "Unknown"
                 )
             )
         }
@@ -45,17 +42,4 @@ class NotificationService : NotificationListenerService() {
         super.onNotificationRemoved(sbn)
     }
 
-    private fun getAppNameFromPackageName(packageName: String): String {
-        var appName: String = packageName
-        val ai: ApplicationInfo? = try {
-            applicationContext.packageManager.getApplicationInfo(packageName, 0)
-
-        } catch (e: PackageManager.NameNotFoundException) {
-            null
-        }
-
-        (if (ai != null) appName =
-            applicationContext?.packageManager?.getApplicationLabel(ai).toString())
-        return appName
-    }
 }

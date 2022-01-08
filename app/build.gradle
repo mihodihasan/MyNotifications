@@ -23,7 +23,7 @@ android {
 
     defaultConfig {
         applicationId "com.mihodihasan.mynotifications"
-        minSdk 21
+        minSdk 22
         targetSdk 31
         versionCode 1
         versionName "1.0"
@@ -91,6 +91,7 @@ dependencies {
     implementation "androidx.preference:preference-ktx:1.1.1"
     //RoomDB Viewer in Browser
     debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
-
+    implementation 'com.github.Binary-Finery:Bungee:3.0'
+    implementation 'com.squareup.picasso:picasso:2.71828'
 
 }

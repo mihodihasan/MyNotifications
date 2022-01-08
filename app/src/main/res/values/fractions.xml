@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <fraction name="leftGuidelinePercent">.05</fraction>
+    <fraction name="rightGuidelinePercent">.95</fraction>
+    <fraction name="topGuidelinePercent">.08</fraction>
+    <fraction name="toolBarTitleMarginLeft">.14</fraction>
+</resources>

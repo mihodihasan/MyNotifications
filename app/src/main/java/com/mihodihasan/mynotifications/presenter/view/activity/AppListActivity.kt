@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.provider.Settings
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mihodihasan.mynotifications.data.model.Notification
@@ -20,7 +19,7 @@ import timber.log.Timber
 
 
 @AndroidEntryPoint
-class AppListActivity : AppCompatActivity(), OnListItemClickListener {
+class AppListActivity : BaseActivity(), OnListItemClickListener {
     var loadMoreItems = true
     var endOfList = false
     private val scrollListener by lazy {
@@ -28,7 +27,7 @@ class AppListActivity : AppCompatActivity(), OnListItemClickListener {
             override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
                 if (loadMoreItems) {
                     viewModel.getStoredPackagesData(page)
-                } else{
+                } else {
                     if (!endOfList) {
                         Toast.makeText(this@AppListActivity, "End of list", Toast.LENGTH_SHORT)
                             .show()
@@ -40,6 +39,7 @@ class AppListActivity : AppCompatActivity(), OnListItemClickListener {
         }
     }
     private val binding: ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+    protected val toolbarBinding by lazy { binding.getToolbar() }
     private val notificationList = mutableListOf<Notification>()
     private val adapter: NotificationListAdapter by lazy {
         NotificationListAdapter(
@@ -55,6 +55,7 @@ class AppListActivity : AppCompatActivity(), OnListItemClickListener {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        setToolbar()
         if (isNotificationServiceRunning()) {
 
         } else {
@@ -100,6 +101,10 @@ class AppListActivity : AppCompatActivity(), OnListItemClickListener {
         startActivity(Intent(this, TitleListActivity::class.java).apply {
             putExtra(Constants.SELECTED_PACKAGE_NAME, notificationList[position].appPackage)
         })
+    }
+
+    private fun setToolbar() {
+        toolbarBinding.updateToolbar("Applications") { onBackPressed() }
     }
 
 }
