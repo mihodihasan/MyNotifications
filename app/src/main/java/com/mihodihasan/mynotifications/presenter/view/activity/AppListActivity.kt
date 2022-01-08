@@ -8,7 +8,7 @@ import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mihodihasan.mynotifications.data.model.Notification
-import com.mihodihasan.mynotifications.databinding.ActivityMainBinding
+import com.mihodihasan.mynotifications.databinding.ActivityAppListBinding
 import com.mihodihasan.mynotifications.domain.Constants
 import com.mihodihasan.mynotifications.domain.EndlessRecyclerViewScrollListener
 import com.mihodihasan.mynotifications.presenter.view.OnListItemClickListener
@@ -38,7 +38,11 @@ class AppListActivity : BaseActivity(), OnListItemClickListener {
             }
         }
     }
-    private val binding: ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+    private val binding: ActivityAppListBinding by lazy {
+        ActivityAppListBinding.inflate(
+            layoutInflater
+        )
+    }
     protected val toolbarBinding by lazy { binding.getToolbar() }
     private val notificationList = mutableListOf<Notification>()
     private val adapter: NotificationListAdapter by lazy {
