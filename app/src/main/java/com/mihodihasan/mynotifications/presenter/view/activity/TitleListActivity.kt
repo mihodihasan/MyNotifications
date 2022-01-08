@@ -10,6 +10,7 @@ import com.mihodihasan.mynotifications.data.model.Notification
 import com.mihodihasan.mynotifications.databinding.ActivityTitleListBinding
 import com.mihodihasan.mynotifications.domain.Constants
 import com.mihodihasan.mynotifications.domain.EndlessRecyclerViewScrollListener
+import com.mihodihasan.mynotifications.domain.ExtensionFunctions.animateStartActivity
 import com.mihodihasan.mynotifications.presenter.view.OnListItemClickListener
 import com.mihodihasan.mynotifications.presenter.view.adapter.TitleListAdapter
 import com.mihodihasan.mynotifications.presenter.viewmodel.TitleVM
@@ -38,6 +39,7 @@ class TitleListActivity : BaseActivity(), OnListItemClickListener {
     }
     private val selectedPackageName by lazy { intent.getStringExtra(Constants.SELECTED_PACKAGE_NAME) }
     private val binding by lazy { ActivityTitleListBinding.inflate(layoutInflater) }
+    protected val toolbarBinding by lazy { binding.getToolbar() }
     private val viewModel by viewModels<TitleVM>()
     private val adapter: TitleListAdapter by lazy { TitleListAdapter(this, list, this) }
     private val list: MutableList<Notification> by lazy { mutableListOf() }
@@ -47,6 +49,7 @@ class TitleListActivity : BaseActivity(), OnListItemClickListener {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        setToolbar()
         binding.recyclerView.apply {
             adapter = this@TitleListActivity.adapter
             layoutManager = this@TitleListActivity.layoutManager
@@ -74,9 +77,13 @@ class TitleListActivity : BaseActivity(), OnListItemClickListener {
     }
 
     override fun onListItemClick(position: Int) {
-        startActivity(Intent(this, MessageListActivity::class.java).apply {
+        animateStartActivity(Intent(this, MessageListActivity::class.java).apply {
             putExtra(Constants.SELECTED_PACKAGE_NAME, selectedPackageName)
             putExtra(Constants.SELECTED_TITLE, list[position].title)
         })
+    }
+
+    private fun setToolbar() {
+        toolbarBinding.updateToolbar("Titles") { onBackPressed() }
     }
 }

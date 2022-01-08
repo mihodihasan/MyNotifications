@@ -14,12 +14,12 @@ import com.mihodihasan.mynotifications.presenter.view.OnListItemClickListener
 import java.util.*
 
 
-class NotificationListAdapter(
+class AppsListAdapter(
     val context: Context,
     private val list: MutableList<Notification>,
     private val onPackageListItemClickListener: OnListItemClickListener
 ) :
-    RecyclerView.Adapter<NotificationListAdapter.NotificationVH>() {
+    RecyclerView.Adapter<AppsListAdapter.NotificationVH>() {
 
     class NotificationVH(val view: View) : RecyclerView.ViewHolder(view)
 
@@ -39,7 +39,6 @@ class NotificationListAdapter(
             Date(list[position].time)
         )
         binding.lastTextTv.text = list[position].title
-        binding.appLogo
         Utils.getIconFromPackage(
             context.applicationContext as MyNotificationsApp,
             list[position].appPackage

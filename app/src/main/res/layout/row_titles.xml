@@ -5,23 +5,84 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Fahim Hasnat"
-        app:layout_constraintEnd_toEndOf="parent"
+    <ImageView
+        android:id="@+id/app_logo"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintBottom_toBottomOf="@+id/last_text_tv"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/appNameTv" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/appNameTv"
+        style="@style/Regular13"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Chutiya"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="#707070"
+        app:layout_constraintEnd_toStartOf="@id/timeTv"
+        app:layout_constraintStart_toEndOf="@+id/app_logo"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="OBHAI Contractor" />
+
+    <TextView
+        android:id="@+id/titleTv"
+        style="@style/Medium21"
+        android:layout_marginStart="8dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="#000"
+        app:layout_constraintEnd_toEndOf="@+id/timeTv"
+        app:layout_constraintStart_toEndOf="@+id/app_logo"
+        app:layout_constraintTop_toBottomOf="@+id/appNameTv"
+        tools:text="OBHAI Contractor" />
+
+    <TextView
+        android:id="@+id/timeTv"
+        style="@style/Regular13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:lines="1"
+        android:maxWidth="145dp"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:textColor="#707070"
+        app:layout_constraintBottom_toBottomOf="@+id/appNameTv"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toTopOf="@+id/appNameTv"
+        tools:text="Jan 21, 2022 12:24 PM" />
+
+    <TextView
+        android:id="@+id/last_text_tv"
+        style="@style/Regular15"
+        android:layout_marginTop="4dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="kjnbhvg"
+        android:textColor="#707070"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/appNameTv"
+        app:layout_constraintTop_toBottomOf="@+id/titleTv" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="8dp"
+        android:background="#dedede"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/last_text_tv"
+        app:layout_constraintTop_toBottomOf="@+id/last_text_tv" />
 </androidx.constraintlayout.widget.ConstraintLayout>

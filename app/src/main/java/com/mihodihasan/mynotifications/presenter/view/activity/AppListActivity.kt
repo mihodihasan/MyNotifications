@@ -11,8 +11,9 @@ import com.mihodihasan.mynotifications.data.model.Notification
 import com.mihodihasan.mynotifications.databinding.ActivityAppListBinding
 import com.mihodihasan.mynotifications.domain.Constants
 import com.mihodihasan.mynotifications.domain.EndlessRecyclerViewScrollListener
+import com.mihodihasan.mynotifications.domain.ExtensionFunctions.animateStartActivity
 import com.mihodihasan.mynotifications.presenter.view.OnListItemClickListener
-import com.mihodihasan.mynotifications.presenter.view.adapter.NotificationListAdapter
+import com.mihodihasan.mynotifications.presenter.view.adapter.AppsListAdapter
 import com.mihodihasan.mynotifications.presenter.viewmodel.AppPackagesVM
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -45,8 +46,8 @@ class AppListActivity : BaseActivity(), OnListItemClickListener {
     }
     protected val toolbarBinding by lazy { binding.getToolbar() }
     private val notificationList = mutableListOf<Notification>()
-    private val adapter: NotificationListAdapter by lazy {
-        NotificationListAdapter(
+    private val adapter: AppsListAdapter by lazy {
+        AppsListAdapter(
             this,
             notificationList,
             this
@@ -63,7 +64,7 @@ class AppListActivity : BaseActivity(), OnListItemClickListener {
         if (isNotificationServiceRunning()) {
 
         } else {
-            startActivity(Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS))
+            animateStartActivity(Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS))
         }
 
         setUpRecycler()
@@ -102,13 +103,13 @@ class AppListActivity : BaseActivity(), OnListItemClickListener {
 
     override fun onListItemClick(position: Int) {
         Timber.tag("AppFlow").d("${notificationList[position].appPackage} tapped")
-        startActivity(Intent(this, TitleListActivity::class.java).apply {
+        animateStartActivity(Intent(this, TitleListActivity::class.java).apply {
             putExtra(Constants.SELECTED_PACKAGE_NAME, notificationList[position].appPackage)
         })
     }
 
     private fun setToolbar() {
-        toolbarBinding.updateToolbar("Applications") { onBackPressed() }
+        toolbarBinding.updateToolbar("Applications", true) { onBackPressed() }
     }
 
 }

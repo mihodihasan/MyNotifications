@@ -7,10 +7,11 @@
 
     <ImageView
         android:id="@+id/iv_back"
-        android:layout_width="18dp"
-        android:layout_height="18dp"
-        android:padding="0dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline9"
         app:layout_constraintStart_toStartOf="@+id/guideline7"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/btn_back_2"
