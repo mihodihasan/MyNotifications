@@ -6,13 +6,112 @@
     android:layout_height="match_parent"
     tools:context=".presenter.view.activity.MessageListActivity">
 
+    <include
+        android:id="@+id/custom_tool_bar"
+        layout="@layout/custom_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/topGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="@fraction/topGuidelinePercent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/startgGideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="@fraction/leftGuidelinePercent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/endGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="@fraction/rightGuidelinePercent" />
+
+
+    <ImageView
+        android:id="@+id/app_logo"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintBottom_toBottomOf="@+id/last_text_tv"
+        app:layout_constraintStart_toStartOf="@id/startgGideline"
+        app:layout_constraintTop_toTopOf="@+id/appNameTv" />
+
+    <TextView
+        android:id="@+id/appNameTv"
+        style="@style/Medium18"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="#000"
+        app:layout_constraintEnd_toStartOf="@id/endGuideline"
+        app:layout_constraintStart_toEndOf="@+id/app_logo"
+        app:layout_constraintTop_toTopOf="@id/topGuideline"
+        tools:text="com.obhai.driver" />
+
+    <TextView
+        android:id="@+id/titleTv"
+        style="@style/Regular13"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="#707070"
+        app:layout_constraintEnd_toEndOf="@+id/appNameTv"
+        app:layout_constraintStart_toEndOf="@+id/app_logo"
+        app:layout_constraintTop_toBottomOf="@+id/appNameTv"
+        tools:text="OBHAI Contractor" />
+
+    <TextView
+        android:id="@+id/last_text_tv"
+        style="@style/Regular15"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textColor="#707070"
+        app:layout_constraintEnd_toEndOf="@id/appNameTv"
+        app:layout_constraintStart_toStartOf="@+id/appNameTv"
+        app:layout_constraintTop_toBottomOf="@+id/titleTv"
+        tools:text="Mihodi Hasan Lushan" />
+
+    <View
+        android:id="@+id/separator"
+        android:layout_width="0dp"
+        android:layout_height="3dp"
+        android:layout_marginTop="4dp"
+        android:background="#dedede"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/last_text_tv" />
+
+
     <androidx.recyclerview.widget.RecyclerView
+
+        android:layout_marginTop="8dp"
+
         android:id="@+id/recycler_view"
         tools:listitem="@layout/row_messages"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="@id/endGuideline"
+        app:layout_constraintStart_toStartOf="@id/startgGideline"
+        app:layout_constraintTop_toBottomOf="@id/separator" />
 </androidx.constraintlayout.widget.ConstraintLayout>

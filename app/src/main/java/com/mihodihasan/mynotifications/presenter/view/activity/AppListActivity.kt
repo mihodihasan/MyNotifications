@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.provider.Settings
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mihodihasan.mynotifications.data.model.Notification
@@ -16,6 +17,9 @@ import com.mihodihasan.mynotifications.presenter.view.OnListItemClickListener
 import com.mihodihasan.mynotifications.presenter.view.adapter.AppsListAdapter
 import com.mihodihasan.mynotifications.presenter.viewmodel.AppPackagesVM
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import timber.log.Timber
 
 
@@ -110,6 +114,23 @@ class AppListActivity : BaseActivity(), OnListItemClickListener {
 
     private fun setToolbar() {
         toolbarBinding.updateToolbar("Applications", true) { onBackPressed() }
+    }
+
+    private var shouldExitNow: Boolean = false
+    override fun onBackPressed() {
+
+
+        if (shouldExitNow) {
+            finishAffinity()
+            super.onBackPressed()
+            return
+        }
+        Toast.makeText(this, "Tap again to exit", Toast.LENGTH_SHORT).show()
+        shouldExitNow = true
+        lifecycleScope.launch(Dispatchers.IO) {
+            delay(1500L)
+            shouldExitNow = false
+        }
     }
 
 }

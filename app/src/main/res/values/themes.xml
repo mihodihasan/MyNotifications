@@ -20,8 +20,12 @@
         <item name="fontFamily">@font/custom_regular</item>
     </style>
 
-    <style name="Regular40" parent="Regular15">
-        <item name="android:textSize">40sp</item>
+    <style name="Regular18" parent="Regular15">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="Regular16" parent="Regular15">
+        <item name="android:textSize">16sp</item>
     </style>
 
     <style name="Regular13" parent="Regular15">
@@ -37,6 +41,10 @@
 
     <style name="Medium15" parent="Medium21">
         <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="Medium18" parent="Medium21">
+        <item name="android:textSize">18sp</item>
     </style>
 
     <style name="Medium19" parent="Medium21">
