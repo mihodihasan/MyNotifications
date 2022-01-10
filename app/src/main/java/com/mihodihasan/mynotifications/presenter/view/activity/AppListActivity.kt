@@ -13,6 +13,8 @@ import com.mihodihasan.mynotifications.databinding.ActivityAppListBinding
 import com.mihodihasan.mynotifications.domain.Constants
 import com.mihodihasan.mynotifications.domain.EndlessRecyclerViewScrollListener
 import com.mihodihasan.mynotifications.domain.ExtensionFunctions.animateStartActivity
+import com.mihodihasan.mynotifications.domain.ExtensionFunctions.gone
+import com.mihodihasan.mynotifications.domain.ExtensionFunctions.visible
 import com.mihodihasan.mynotifications.presenter.view.OnListItemClickListener
 import com.mihodihasan.mynotifications.presenter.view.adapter.AppsListAdapter
 import com.mihodihasan.mynotifications.presenter.viewmodel.AppPackagesVM
@@ -73,10 +75,15 @@ class AppListActivity : BaseActivity(), OnListItemClickListener {
 
         setUpRecycler()
         setupLiveData()
+        makeEmptyViewVisible()
         notificationList.clear()
-        endOfList=false
+        endOfList = false
         viewModel.getStoredPackagesData(0)
+    }
 
+    private fun makeEmptyViewVisible() {
+        binding.includedView.root.visible()
+        binding.recyclerView.gone()
     }
 
     //todo test later
@@ -101,8 +108,18 @@ class AppListActivity : BaseActivity(), OnListItemClickListener {
 //            notificationList.clear()
             notificationList.addAll(it)
             adapter.notifyDataSetChanged()
+            if (notificationList.size == 0) {
+                makeEmptyViewVisible()
+            } else {
+                makeEmptyViewGone()
+            }
             if (it.isNullOrEmpty()) loadMoreItems = false
         }
+    }
+
+    private fun makeEmptyViewGone() {
+        binding.includedView.root.gone()
+        binding.recyclerView.visible()
     }
 
     override fun onListItemClick(position: Int) {

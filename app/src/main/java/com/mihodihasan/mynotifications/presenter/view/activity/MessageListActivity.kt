@@ -61,8 +61,12 @@ class MessageListActivity : BaseActivity() {
             if (lastDate == null || lastDate != Utils.getFormattedDate(it.time)) {
                 lastDate = Utils.getFormattedDate(it.time)
                 returnList.add(Message(MessageViewType.DateType(), lastDate!!))
-            } else if (lastDate == Utils.getFormattedDate(it.time)) {
+            }
+            if (lastDate == Utils.getFormattedDate(it.time)) {
                 returnList.add(Message(MessageViewType.TextType(), lastDate!!, it))
+            } else {
+                lastDate = Utils.getFormattedDate(it.time)
+                returnList.add(Message(MessageViewType.DateType(), lastDate!!))
             }
         }
         return returnList.toList()
